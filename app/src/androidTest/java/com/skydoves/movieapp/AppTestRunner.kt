@@ -1,6 +1,6 @@
 
 
-package com.undabot.githubapp
+package com.mvvm.githubapp
 
 import android.app.Application
 import android.content.Context

@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Undabot Github App</string>
-  <string name="weight">Weight</string>
-  <string name="height">Height</string>
+  <string name="app_name">Github MVVM App</string>
   <string name="base_stats">Base Stats</string>
-  <string name="hp">HP</string>
-  <string name="atk">ATK</string>
-  <string name="def">DEF</string>
-  <string name="spd">SPD</string>
-  <string name="exp">EXP</string>
-  <string name="enter_title">Enter title</string>
+  <string name="enter_title">Enter something to search repository</string>
   <string name="please_enter_input">Please fill search input</string>
-  <string name="undabot">Undabot</string>
+  <string name="mvvmapp">Github MVVM App</string>
   <string name="there_is_no_internet">There is no internet connectivity.Please, check your internet connection!</string>
   <string name="okay">Okay</string>
-  <string name="year">Year</string>
-  <string name="runtime">Runtime</string>
   <string name="other_infos">Other Infos</string>
-  <string name="released">Released</string>
-  <string name="imdb_rating">Imdb Rating</string>
-  <string name="genre">Genre</string>
-  <string name="director">Director</string>
-  <string name="there_is_no_movie_data">There is no movie data.</string>
+  <string name="watchers">Watchers</string>
+  <string name="issues">Issues</string>
+  <string name="secondAgo">seconds ago</string>
+  <string name="daysAgo">days ago</string>
+  <string name="hoursAgo">hours ago</string>
+  <string name="minutesAgo">minutes ago</string>
+  <string name="justNow">now</string>
+  <string name="created">Created</string>
+  <string name="updated">Updated</string>
+  <string name="user">Open User Details</string>
+  <string name="repo">Open Repo Details</string>
+  <string name="there_is_no_repo_data">There is no repository data</string>
 </resources>

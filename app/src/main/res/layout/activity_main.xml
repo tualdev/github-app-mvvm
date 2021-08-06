@@ -7,11 +7,11 @@
 
     <variable
       name="vm"
-      type="com.undabot.githubapp.ui.main.MainViewModel" />
+      type="com.mvvm.githubapp.ui.main.MainViewModel" />
 
     <variable
       name="adapter"
-      type="com.undabot.githubapp.ui.adapter.MovieAdapter" />
+      type="com.mvvm.githubapp.ui.adapter.RepositoryAdapter" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -109,15 +109,15 @@
       android:scrollbarThumbVertical="@drawable/scrollbar"
       android:scrollbars="vertical"
       app:adapter="@{adapter}"
-      app:adapterMovieList="@{vm.movieListLiveData}"
+      app:adapterRepositoryList="@{vm.repoListLiveData}"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-      app:paginationMovieList="@{vm}"
-      app:spanCount="2"
+      app:paginationRepoList="@{vm}"
+      app:spanCount="1"
       app:toast="@{vm.toastValue}"
-      tools:listitem="@layout/item_movie" />
+      tools:listitem="@layout/item_repository" />
 
     <ProgressBar
       android:id="@+id/progressbar"

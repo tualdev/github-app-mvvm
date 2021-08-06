@@ -1,12 +1,12 @@
 
 
-package com.undabot.githubapp
+package com.mvvm.githubapp
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.undabot.githubapp.ui.main.MainActivity
+import com.mvvm.githubapp.ui.main.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
@@ -26,7 +26,7 @@ class MainActivityInjectionTest {
       it.moveToState(Lifecycle.State.CREATED)
       it.onActivity { activity ->
         assertThat(activity.viewModel).isNotNull()
-        activity.viewModel.movieListLiveData.observe(activity) { pokemonList ->
+        activity.viewModel.repoListLiveData.observe(activity) { pokemonList ->
           assertThat(pokemonList).isNotNull()
         }
       }

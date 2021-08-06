@@ -1,5 +1,5 @@
 ///*
-// * Designed and developed by 2021 undabot (freedev)
+// * Designed and developed by 2021 mvvm (freedev)
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
 // * you may not use this file except in compliance with the License.
@@ -63,6 +63,7 @@ ext.versions = [
     // glide
     glideVersion         : '4.11.0',
     glidePaletteVersion  : '2.1.2',
+    anko_version  : '0.10.8',
 
     // bundler
     bundlerVersion       : '1.0.3',

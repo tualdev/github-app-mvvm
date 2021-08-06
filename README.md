@@ -1,7 +1,7 @@
-<h1 align="center">Undabot Github App</h1>
+<h1 align="center">Github MVVM App</h1>
 
 <p align="center">  
-Movie App is a small demo application based on modern Android application tech-stacks and MVVM architecture.
+Github App is a small demo application based on modern Android application tech-stacks and MVVM architecture.
 </p>
 
 <p align="center">

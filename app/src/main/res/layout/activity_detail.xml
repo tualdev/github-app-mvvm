@@ -6,12 +6,12 @@
   <data>
 
     <variable
-      name="movie"
-      type="com.undabot.githubapp.model.Movie" />
+      name="repo"
+      type="com.mvvm.githubapp.model.Repo" />
 
     <variable
       name="vm"
-      type="com.undabot.githubapp.ui.details.DetailViewModel" />
+      type="com.mvvm.githubapp.ui.details.DetailViewModel" />
   </data>
 
   <androidx.core.widget.NestedScrollView
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:layout_marginStart="12dp"
-        android:text="@{vm.movieInfoLiveData.imdbID}"
+        android:text="@{vm.repoInfoLiveData.name}"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="36dp"
-        android:text="@{movie.title}"
+        android:text="@{repo.owner.login}"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textColor="@color/white"
         android:textSize="36sp"
@@ -100,20 +100,18 @@
         app:layout_constraintBottom_toBottomOf="@id/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:paletteImage="@{movie.poster}"
+        app:paletteImage="@{repo.owner.avatarUrl}"
         app:paletteView="@{header}"
         app:toast="@{vm.toastLiveData}" />
 
-      <com.skydoves.androidribbon.RibbonRecyclerView
+      <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ribbonRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:ribbon_recycler_orientation="horizontal"
-        tools:listitem="@layout/item_ribbon" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
       <ProgressBar
         android:id="@+id/progressbar"
@@ -132,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@{vm.movieInfoLiveData.year}"
+        android:text="@{vm.repoInfoLiveData.watchers}"
         android:textSize="21sp"
         app:layout_constraintEnd_toStartOf="@id/height"
         app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +141,7 @@
         style="@style/TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{vm.movieInfoLiveData.runtime}"
+        android:text="@{vm.repoInfoLiveData.issues}"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/weight"
@@ -153,7 +151,7 @@
         android:id="@+id/weight_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/year"
+        android:text="@string/watchers"
         android:textColor="@color/white_56"
         app:layout_constraintEnd_toStartOf="@id/height"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,7 +161,7 @@
         android:id="@+id/height_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/runtime"
+        android:text="@string/issues"
         android:textColor="@color/white_56"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/weight"
@@ -188,7 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
-        android:text="@string/released"
+        android:text="@string/created"
         android:textColor="@color/white_70"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -200,7 +198,7 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="32dp"
           android:layout_marginTop="4dp"
-          android:text="@{vm.movieInfoLiveData.released}"
+          android:text="@{vm.repoInfoLiveData.createdDate}"
           android:textColor="@color/white_70"
           android:textStyle="bold"
           app:layout_constraintBottom_toBottomOf="@id/releasedStrTv"
@@ -214,7 +212,7 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="32dp"
           android:layout_marginTop="4dp"
-          android:text="@string/imdb_rating"
+          android:text="@string/updated"
           android:textColor="@color/white_70"
           android:textStyle="bold"
           app:layout_constraintStart_toStartOf="parent"
@@ -226,65 +224,40 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="32dp"
           android:layout_marginTop="4dp"
-          android:text="@{vm.movieInfoLiveData.imdbRating}"
+          android:text="@{vm.repoInfoLiveData.updatedDate}"
           android:textColor="@color/white_70"
           android:textStyle="bold"
           app:layout_constraintBottom_toBottomOf="@id/imdbRatingStrTv"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toEndOf="@id/imdbRatingStrTv"
           app:layout_constraintTop_toTopOf="@id/imdbRatingStrTv" />
-
+      
       <TextView
-          android:id="@+id/genreStrTv"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:id="@+id/openUserDetailsTv"
+          android:layout_width="match_parent"
+          android:layout_height="36dp"
           android:layout_marginStart="32dp"
           android:layout_marginTop="4dp"
-          android:text="@string/genre"
-          android:textColor="@color/white_70"
+          android:gravity="center"
+          android:text="@string/user"
+          android:textColor="@color/md_blue_200"
           android:textStyle="bold"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/imdbRatingStrTv" />
-
+      
       <TextView
-          android:id="@+id/genreTv"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:id="@+id/openRepoDetailsTv"
+          android:layout_width="match_parent"
+          android:layout_height="36dp"
           android:layout_marginStart="32dp"
           android:layout_marginTop="4dp"
-          android:text="@{vm.movieInfoLiveData.genre}"
-          android:textColor="@color/white_70"
-          android:textStyle="bold"
-          app:layout_constraintBottom_toBottomOf="@id/genreStrTv"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toEndOf="@id/genreStrTv"
-          app:layout_constraintTop_toTopOf="@id/genreStrTv" />
-
-      <TextView
-          android:id="@+id/directorStrTv"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="32dp"
-          android:layout_marginTop="4dp"
-          android:text="@string/director"
-          android:textColor="@color/white_70"
+          android:gravity="center"
+          android:text="@string/repo"
+          android:textColor="@color/yellow"
           android:textStyle="bold"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/genreStrTv" />
+          app:layout_constraintTop_toBottomOf="@id/openUserDetailsTv" />
 
-      <TextView
-          android:id="@+id/directorTv"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="32dp"
-          android:layout_marginTop="4dp"
-          android:text="@{vm.movieInfoLiveData.director}"
-          android:textColor="@color/white_70"
-          android:textStyle="bold"
-          app:layout_constraintBottom_toBottomOf="@id/directorStrTv"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toEndOf="@id/directorStrTv"
-          app:layout_constraintTop_toTopOf="@id/directorStrTv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

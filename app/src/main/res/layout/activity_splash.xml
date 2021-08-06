@@ -5,7 +5,7 @@
 
     <variable
       name="vm"
-      type="com.undabot.githubapp.ui.splash.SplashViewModel" />
+      type="com.mvvm.githubapp.ui.splash.SplashViewModel" />
 
   </data>
 
@@ -20,7 +20,7 @@
         android:layout_centerInParent="true"
         android:textSize="24sp"
         android:textColor="@color/white"
-        android:text="@string/undabot"/>
+        android:text="@string/mvvmapp"/>
 
   </RelativeLayout>
 </layout>

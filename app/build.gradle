@@ -1,5 +1,5 @@
 ///*
-// * Designed and developed by 2021 undabot (freedev)
+// * Designed and developed by 2021 mvvm (freedev)
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
 // * you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ apply from: "$rootDir/dependencies.gradle"
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.undabot.githubapp"
+        applicationId "com.mvvm.githubapp"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode
         versionName versions.versionName
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "com.undabot.githubapp.AppTestRunner"
+        testInstrumentationRunner "com.mvvm.githubapp.AppTestRunner"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
@@ -134,6 +134,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
     implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
     kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation "org.jetbrains.anko:anko:$versions.anko_version"
 
     // bundler
     implementation "com.github.skydoves:bundler:$versions.bundlerVersion"
