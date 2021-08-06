@@ -21,6 +21,7 @@ class MainRepository @Inject constructor(
   @WorkerThread
   fun fetchRepositoryList(
     search: String,
+    sort: String,
     page: Int,
     onSuccess: () -> Unit,
     onError: (String?) -> Unit
@@ -28,7 +29,7 @@ class MainRepository @Inject constructor(
     var repos: List<Repo>
 
     if(search != "null"){
-      val response = repoClient.fetchRepositoryList(search = search, page = page)
+      val response = repoClient.fetchRepositoryList(search = search, sort = sort, page = page)
       response.suspendOnSuccess {
         data.whatIfNotNull { response ->
           repos = response.items

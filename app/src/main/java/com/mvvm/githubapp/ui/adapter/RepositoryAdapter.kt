@@ -10,6 +10,7 @@ import com.mvvm.githubapp.R
 import com.mvvm.githubapp.databinding.ItemRepositoryBinding
 import com.mvvm.githubapp.model.Repo
 import com.mvvm.githubapp.ui.details.DetailActivity
+import com.mvvm.githubapp.utils.CommonUtils
 
 class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
@@ -29,6 +30,12 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewH
           DetailActivity.startActivity(binding.transformationLayout, items[position])
           onClickedAt = currentClickedAt
         }
+      }
+
+      binding.avatarCircleImageView.setOnClickListener {
+        val position = bindingAdapterPosition.takeIf { it != NO_POSITION }
+                ?: return@setOnClickListener
+        CommonUtils.launchUrl(parent.context, items[position].owner!!.htmlUrl)
       }
     }
   }

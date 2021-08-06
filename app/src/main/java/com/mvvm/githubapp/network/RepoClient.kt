@@ -12,11 +12,12 @@ class RepoClient @Inject constructor(
 
   suspend fun fetchRepositoryList(
           search: String,
+          sort: String,
           page: Int
   ): ApiResponse<SearchResult> =
           repoService.searchRepos(
                   query = search,
-                  sort = "best%20match",
+                  sort = sort,
                   order = "desc",
                   page = page,
                   perPage = AppConstant.PAGE_SIZE

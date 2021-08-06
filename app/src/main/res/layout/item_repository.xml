@@ -53,6 +53,7 @@
               app:layout_constraintEnd_toEndOf="parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatarCircleImageView"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 app:imageUrl="@{repository.owner.avatarUrl}"

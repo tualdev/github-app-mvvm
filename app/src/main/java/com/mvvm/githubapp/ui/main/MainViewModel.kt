@@ -23,8 +23,13 @@ class MainViewModel @Inject constructor(
   val repoListLiveData: LiveData<List<Repo>>
 
   private val toastLiveData: MutableLiveData<String> = MutableLiveData()
+
   private val searchValueLiveData: MutableLiveData<String> = MutableLiveData()
+  private val sortValueLiveData: MutableLiveData<String> = MutableLiveData()
+
   private val searchValue: LiveData<String> get() = searchValueLiveData
+  private val sortValue: LiveData<String> get() = sortValueLiveData
+
   val toastValue: LiveData<String> get() = toastLiveData
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
@@ -34,16 +39,18 @@ class MainViewModel @Inject constructor(
 
     repoListLiveData = repoFetchingIndex.asLiveData().switchMap { page ->
       mainRepository.fetchRepositoryList(
-        search = searchValue.value.toString(), page = page,
+        search = searchValue.value.toString(), sort = sortValue.value.toString(), page = page,
         onSuccess = { isLoading.set(false) },
         onError = { toastLiveData.postValue(it) }
       ).asLiveDataOnViewModelScope()
     }
   }
 
-  fun fetchRepoList(search: String){
+  fun fetchRepoList(search: String, sort: String, page: Int){
     isLoading.set(true)
     searchValueLiveData.value = search
+    sortValueLiveData.value = sort
+    repoFetchingIndex.value = page
     fetchRepoList()
   }
 

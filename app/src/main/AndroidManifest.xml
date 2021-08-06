@@ -4,8 +4,6 @@
   package="com.mvvm.githubapp">
 
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
@@ -43,6 +41,7 @@
       android:name="androidx.startup.InitializationProvider"
       android:authorities="com.mvvm.githubapp.androidx-startup"
       android:exported="false"
+      tools:replace="android:authorities"
       tools:node="merge">
 
       <meta-data

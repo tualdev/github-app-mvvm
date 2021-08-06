@@ -3,6 +3,7 @@
 package com.mvvm.githubapp
 
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.observe
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
@@ -26,8 +27,8 @@ class MainActivityInjectionTest {
       it.moveToState(Lifecycle.State.CREATED)
       it.onActivity { activity ->
         assertThat(activity.viewModel).isNotNull()
-        activity.viewModel.repoListLiveData.observe(activity) { pokemonList ->
-          assertThat(pokemonList).isNotNull()
+        activity.viewModel.repoListLiveData.observe(activity) { repoList ->
+          assertThat(repoList).isNotNull()
         }
       }
     }

@@ -1,6 +1,8 @@
 package com.mvvm.githubapp.ui.main
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -10,6 +12,7 @@ import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.mvvm.githubapp.BuildConfig
 import com.mvvm.githubapp.R
 import com.mvvm.githubapp.base.DataBindingActivity
 import com.mvvm.githubapp.databinding.ActivityMainBinding
@@ -25,6 +28,7 @@ class MainActivity : DataBindingActivity() {
 
   private lateinit var searchEditText: EditText
   private lateinit var clearButton: ImageButton
+  private lateinit var filterImageButton: ImageButton
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
@@ -37,11 +41,14 @@ class MainActivity : DataBindingActivity() {
 
     searchEditText = binding.etSearch
     clearButton = binding.btClear
+    filterImageButton = binding.mainToolbar.findViewById(R.id.filterImageButton)
 
     initView()
   }
 
   private fun initView() {
+
+    val sortChoicesArray = arrayOf<CharSequence>("Stars", "Forks", "Updated")
 
     clearButton.setOnClickListener{
       searchEditText.setText("")
@@ -56,12 +63,50 @@ class MainActivity : DataBindingActivity() {
       }
       false
     })
+
+    filterImageButton.setOnClickListener {
+
+      if (BuildConfig.FLAVOR == "free"){
+        Toast.makeText(this, "it is free :(", Toast.LENGTH_SHORT).show()
+      }else{
+        AlertDialog.Builder(this)
+                .setSingleChoiceItems(sortChoicesArray, 0, null)
+                .setPositiveButton(R.string.okay, DialogInterface.OnClickListener { dialog, _ ->
+                  dialog.dismiss()
+                  val selectedPosition: Int = (dialog as AlertDialog).listView.checkedItemPosition
+
+                  val query: String = searchEditText.text.toString().trim { it <= ' ' }
+                  if (query != "") {
+
+                    when (selectedPosition) {
+                      0 -> {
+                        viewModel.fetchRepoList(query, "stars", 0)
+                        searchEditText.clearFocus()
+                      }
+                      1 -> {
+                        viewModel.fetchRepoList(query, "forks", 0)
+                        searchEditText.clearFocus()
+                      }
+                      2 -> {
+                        viewModel.fetchRepoList(query, "updated", 0)
+                        searchEditText.clearFocus()
+                      }
+                    }
+
+                  } else {
+                    dialog.dismiss()
+                    Toast.makeText(this, getString(R.string.please_enter_input), Toast.LENGTH_SHORT).show()
+                  }
+
+                }).show()
+      }
+    }
   }
 
   private fun searchAction() {
     val query: String = searchEditText.text.toString().trim { it <= ' ' }
     if (query != "") {
-      viewModel.fetchRepoList(query)
+      viewModel.fetchRepoList(query, "best%20match", 0)
       searchEditText.clearFocus()
     } else {
       Toast.makeText(this, getString(R.string.please_enter_input), Toast.LENGTH_SHORT).show()

@@ -3,8 +3,10 @@
 package com.mvvm.githubapp.ui.details
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.mvvm.githubapp.BuildConfig
 import com.mvvm.githubapp.R
 import com.mvvm.githubapp.base.DataBindingActivity
 import com.mvvm.githubapp.databinding.ActivityDetailBinding
@@ -56,8 +58,13 @@ class DetailActivity : DataBindingActivity() {
 
     fun startActivity(transformationLayout: TransformationLayout, repo: Repo) =
       transformationLayout.context.intentOf<DetailActivity> {
-        putExtra(REPO to repo)
-        TransformationCompat.startActivity(transformationLayout, intent)
+
+        if (BuildConfig.FLAVOR == "free"){
+          Toast.makeText(transformationLayout.context, "it is free :(", Toast.LENGTH_SHORT).show()
+        }else{
+          putExtra(REPO to repo)
+          TransformationCompat.startActivity(transformationLayout, intent)
+        }
       }
   }
 }
