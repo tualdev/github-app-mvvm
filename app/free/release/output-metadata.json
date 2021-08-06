@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.mvvm.githubapp.free",
+  "variantName": "processFreeReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 5,
+      "versionName": "1.0.4-free",
+      "outputFile": "app-free-release.apk"
+    }
+  ]
+}
