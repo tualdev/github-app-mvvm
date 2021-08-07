@@ -22,6 +22,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: "$rootDir/dependencies.gradle"
 
 android {
+
     compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.mvvm.githubapp"
@@ -42,17 +43,43 @@ android {
             }
         }
     }
-    flavorDimensions "version"
+
+    signingConfigs {
+        config {
+            storeFile file("mvvm")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+    flavorDimensions "default"
     productFlavors {
         free {
-            dimension "version"
+            dimension "default"
+            applicationId "com.mvvm.githubapp"
             applicationIdSuffix ".free"
             versionNameSuffix "-free"
+            signingConfig signingConfigs.config
         }
         paid {
-            dimension "version"
+            dimension "default"
+            applicationId "com.mvvm.githubapp"
             applicationIdSuffix ".paid"
             versionNameSuffix "-paid"
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {

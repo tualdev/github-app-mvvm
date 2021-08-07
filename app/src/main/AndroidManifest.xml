@@ -39,7 +39,7 @@
 
     <provider
       android:name="androidx.startup.InitializationProvider"
-      android:authorities="com.mvvm.githubapp.androidx-startup"
+      android:authorities="${applicationId}.androidx-startup"
       android:exported="false"
       tools:replace="android:authorities"
       tools:node="merge">
